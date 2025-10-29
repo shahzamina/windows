@@ -1,0 +1,337 @@
+/* === Navbar Base === */
+.Dyn-nav {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  gap: 10%;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  box-shadow: 0px 2px 4px rgb(18, 150, 184);
+  background: transparent;
+}
+
+.dyn {
+  width: 100vw;
+}
+
+/* === Responsive Widths === */
+@media (min-width: 567px),
+(min-width: 768px),
+(min-width: 992px) {
+  .dyn {
+    width: 100vw;
+  }
+}
+
+/* === Logo === */
+.nav-img {
+  width: 100%;
+  height: 70px;
+  margin-left: 1%;
+}
+
+@media (min-width: 567px) {
+  .nav-img {
+    width: 40%;
+    height: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-img {
+    width: 15%;
+    height: auto;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-img {
+    width: 40%;
+    height: 70px;
+    margin-left: 5%;
+  }
+}
+
+.n-wid {
+  width: 40%;
+}
+
+@media (min-width: 567px) {
+  .n-wid {
+    width: 30%;
+  }
+}
+
+/* === Menu & Hamburger === */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+}
+
+.menu {
+  display: block;
+}
+
+.menu.sopen {
+  background: black;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  margin-left: 50%;
+  width: 50%;
+  padding: 15px;
+  z-index: 999;
+}
+
+.menu.lopen {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .menu {
+    display: block !important;
+    position: static;
+    background: none;
+    padding: 0;
+  }
+}
+
+/* === Nav Items === */
+.nav-menu {
+  color: white !important;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-size: 20px;
+}
+
+.nav-menu li {
+  color:#053d75 ;
+  transition: all 0.3s ease;
+}
+
+.nav-menu li:hover {
+  color:  rgb(18, 150, 184);
+  transform: translateY(-3px);
+}
+
+/* === Dropdown Styling === */
+.dropdown-menu {
+  box-shadow: 0px 1px 4px rgb(18, 150, 184);
+  border-radius: 1px;
+  padding-bottom: 0;
+  border: none !important;
+  background-color: black;
+  width: 100px !important;
+  height: 160px;
+}
+
+.dropdown-menu li {
+  padding: 2px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* === Hover Dropdown Behavior === */
+.nav-item.dropdown > .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 250px;
+  background: black;
+  z-index: 1050;
+}
+
+/* Show on hover (desktop only) */
+@media (min-width: 992px) {
+  .nav-item.dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* === Submenu === */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: black;
+  width: 240px;
+  z-index: 1060;
+}
+
+/* Hover behavior for submenu (desktop only) */
+@media (min-width: 992px) {
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* === Mobile Behavior === */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Hide by default */
+  .nav-item.dropdown > .dropdown-menu,
+  .dropdown-submenu > .dropdown-menu {
+    display: none;
+  }
+
+  /* Show when .open is toggled by React */
+  .nav-item.dropdown.open > .dropdown-menu,
+  .dropdown-submenu.open > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* === Dropdown Text === */
+.dropdown-item,
+.submenu-title,
+.dropdown-submenu > .dropdown-item,
+.dropdown-submenu > .submenu-title {
+  color: rgb(18, 150, 184) !important;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 6%;
+
+  margin-right: 6% !important;
+  font-family: Lato;
+}
+
+/* === Mobile Behavior (click open) === */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 200%;
+  }
+
+  /* Hide by default */
+  .nav-item.dropdown > .dropdown-menu,
+  .dropdown-submenu > .dropdown-menu {
+    display: none;
+  }
+
+  /* Show when .open is added by React */
+  .nav-item.dropdown.open > .dropdown-menu,
+  .dropdown-submenu.open > .dropdown-menu {
+    display: block;
+  }
+
+  /* For better readability */
+  .dropdown-item,
+  .submenu-title {
+    padding-left: 20px;
+  }
+}
+/* Hover dropdown (for desktop) */
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Submenu layout */
+.dropdown-submenu {
+  position: relative;
+}
+
+
+/* Show dropdown when active */
+.dropdown-menu.show,
+.dropdown-submenu .dropdown-menu.show {
+  display: block;
+}
+
+
+/* === Default (mobile first) === */
+.dropdown-submenu .dropdown-menu {
+  display: none;
+  position: static; /* ✅ expands below for mobile */
+  padding-left: 0.5rem;
+  border-left: 2px solid #eee;
+}
+
+/* === When open on mobile (clicked in React) === */
+@media (max-width: 991px) {
+  .dropdown-submenu.open > .dropdown-menu {
+    display: block; /* ✅ show below when clicked */
+  }
+}
+
+/* === Desktop behavior (hover → open to the right) === */
+@media (min-width: 992px) {
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  @media (max-width: 991px) {
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+
+  .dropdown-submenu > .dropdown-menu {
+    display: none;
+    position: absolute;  /* ✅ open beside parent */
+    top: 0;
+    left: 100%;          /* or change to right: 100% if you want left side */
+    margin-top: 0;
+    background: black;
+    height: auto;
+    width: 180px !important;
+    z-index: 1060;
+  }
+
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block; /* ✅ show on hover */
+  }
+}
+
+/* === Submenu Dropdown Height === */
+.dropdown-submenu > .dropdown-menu {
+  max-height: auto; /* Set a reasonable max height */
+  overflow-y: auto;  /* Enable scrolling if content exceeds height */
+  padding: 10px 0;   /* Add vertical padding for spacing */
+}
+
+/* Optional: Improve spacing between submenu items */
+.dropdown-submenu .dropdown-item {
+  padding: 8px 12px;
+}
+
+@media (max-width: 991px) {
+  .nav-item.dropdown.open > .dropdown-menu {
+    height: auto !important;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+
