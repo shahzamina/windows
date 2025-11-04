@@ -19,7 +19,7 @@ const Contact = ({img,ch}) => {
   ];
 
   const onSubmit= async(e)=>{
-    
+    console.log('data',e)
     setLoading(true); 
     try{
     const res= await fetch('http://localhost:5000/fillCon', {

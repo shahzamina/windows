@@ -1,98 +1,81 @@
-const itemModel=require('../models/contact.cjs')
-const sendEmail = require('../utils/sendmail.cjs'); // adjust path
 
+const itemModel = require('../models/contact.cjs');
+const sendEmail = require('../utils/sendmail.cjs');
 
-const fillCon=async(req,res)=>{
+const fillCon = async (req, res) => {
+  try {
+    console.log("✅ Request Body:", req.body);
 
-    try{
-        const {name,email,phone,services,comment}=req.body
-        console.log(req.body)
-       
-        const newCon=new itemModel({name,email,phone,services})
-        await newCon.save();
-              // Prepare email
-        const subject = 'New Contact Form Submission';
-        const html = `
-          <h3>New Contact Submission</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Services:</strong> ${services.join(', ')}</p>
-          <p><strong>Comment:</strong> ${comment || 'N/A'}</p>
-        `;
+    // Destructure the data
+    const { name, email, phone, services, comment } = req.body; 
 
-        // Send email asynchronously
-   const itemModel=require('../models/contact.cjs')
-const sendEmail = require('../utils/sendmail.cjs'); // adjust path
+    // Save to database
+    const newCon = new itemModel({ name, email, phone, services, comment });
+    await newCon.save();
+    console.log("✅ Saved to MongoDB:", newCon._id);
 
+    // --- 1. Notification Email to You (The Admin/Sales Team) ---
+    // This email tells your sales team that a new form has been submitted.
+    const subjectAdmin = 'New Contact Form Submission Received';
+    const htmlAdmin = `
+      <h3>New Contact Submission</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Services:</strong> ${Array.isArray(services) ? services.join(', ') : services}</p>
+      <p><strong>Comment:</strong> ${comment || 'N/A'}</p>
+    `;
 
-const fillCon=async(req,res)=>{
+    // **CHANGE MADE HERE:** Sending the notification to the desired sales email.
+    await sendEmail({
+      to: 'sales@windowinnovationz.com', // <-- YOUR SALES EMAIL
+      subject: subjectAdmin,
+      text: `New contact form submission from ${name}`,
+      html: htmlAdmin,
+    });
+    console.log("✅ Notification Email sent to Sales Team!");
 
-    try{
-        const {name,email,phone,services,comment}=req.body
-        console.log(req.body)
-       
-        const newCon=new itemModel({name,email,phone,services})
-        await newCon.save();
-              // Prepare email
-        const subject = 'New Contact Form Submission';
-        const html = `
-          <h3>New Contact Submission</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Services:</strong> ${services.join(', ')}</p>
-          <p><strong>Comment:</strong> ${comment || 'N/A'}</p>
-        `;
+    // --- 2. Confirmation Email to the Client (Form Submitter) ---
+    // This email confirms receipt to the person who filled out the form.
+    const subjectClient = 'Thank You for Contacting Us!';
+    const htmlClient = `
+        <h3>Dear ${name},</h3>
+        <p>Thank you for submitting your contact form. We have successfully received your inquiry and will get back to you shortly.</p>
+        <p>Here is a summary of the information you provided:</p>
+        <ul>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Phone:</strong> ${phone}</li>
+            <li><strong>Services Requested:</strong> ${Array.isArray(services) ? services.join(', ') : services}</li>
+            <li><strong>Your Comment:</strong> ${comment || 'N/A'}</li>
+        </ul>
+        <p>Best Regards,</p>
+        <p>The Window Innovationz Team</p>
+    `;
 
-        // Send email asynchronously
-       await sendEmail({
-            subject,
-            html,
-            text: `New contact from ${name}`,
-            to: 'alishazmina7@gmail.com',  // receiver
-            from: process.env.GMAIL_USER    // authenticated sender
-        }).catch(err => console.error('Email failed:', err));
+    // Sending the confirmation to the client's submitted email.
+    await sendEmail({
+      to: email, // <-- Client's Email Address
+      subject: subjectClient,
+      text: `Thank you, ${name}. We received your contact form.`,
+      html: htmlClient,
+    });
+    console.log("✅ Confirmation Email sent to Client!");
+    
+    // Send success response
+    res.status(200).json({
+      message: 'Form submitted, and both notification and confirmation emails sent successfully!',
+      success: true,
+      data: newCon,
+    });
 
-        // Send response once
-        res.status(200).json({
-            message: 'Form submitted successfully',
-            success: true,
-            data: newCon
-        });
-         //    res.status(200).json(newCon)
+  } catch (err) {
+    console.error("❌ Controller Error:", err);
+    res.status(500).json({
+      message: 'Internal Server Error',
+      success: false,
+      error: err.message,
+    });
+  }
+};
 
-     
-        
-
-    }
-    catch(err){
-        res.status(500).json({message:'Internal server error ',
-            success:false
-        })
-    }
-}
-
-
-module.exports=fillCon
-        // Send response once
-        res.status(200).json({
-            message: 'Form submitted successfully',
-            success: true,
-            data: newCon
-        });
-         //    res.status(200).json(newCon)
-
-     
-        
-
-    }
-    catch(err){
-        res.status(500).json({message:'Internal server error ',
-            success:false
-        })
-    }
-}
-
-
-module.exports=fillCon
+module.exports = fillCon;

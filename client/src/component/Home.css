@@ -3,6 +3,7 @@
     background-image: url('/images/home2.jpg');
     background-repeat: no-repeat;
      background-size: cover;   
+     background-attachment: fixed;
      width: 65vw;
         height: 650px; 
    background-position: center;
