@@ -77,7 +77,7 @@ useEffect(()=>{
 
     <div className=' dyn about'>
        <div className='oth-ser' style={{height:"35vh"}} >
-          <h1  className='mt-5 text-black  ' style={{wordSpacing:'1px',fontFamily:'Lato'}}>ABOUT US </h1>
+          <h1  className='mt-5 text-white   ' style={{wordSpacing:'1px',fontFamily:'Lato'}}>ABOUT US </h1>
         
 </div>
 

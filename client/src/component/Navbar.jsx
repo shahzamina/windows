@@ -157,7 +157,7 @@ const toggleMenu = () => {
                       className="dropdown-item"
                       onClick={handleLinkClick}
                     >
-                       uPVC Ventilator
+                        Ventilator
                     </Link>
                   </li>
                 </ul>
@@ -185,22 +185,22 @@ const toggleMenu = () => {
   >
     <li>
       <Link to="/sky" className="dropdown-item" onClick={handleLinkClick}>
-        Glass Skylight
+         Skylight
       </Link>
     </li>
     <li>
       <Link to="/gstair" className="dropdown-item" onClick={handleLinkClick}>
-        Glass Stairs Railing
+         Stairs Railing
       </Link>
     </li>
     <li>
       <Link to="/grail" className="dropdown-item" onClick={handleLinkClick}>
-        Glass Terrace Railing
+         Terrace Railing
       </Link>
     </li>
     <li>
       <Link to="/scab" className="dropdown-item" onClick={handleLinkClick}>
-        Glass Shower Cabins
+         Shower Cabins
       </Link>
     </li>
     

@@ -9,10 +9,10 @@ const Services = ({carousal1,h1}) => {
           <h1>{h1}</h1>
 </div>
 
-  <div  className='position-relative d-flex flex-column  flex-lg-row  flex-wrap justify-content-center gap-1'>
+  <div  className='position-relative d-flex flex-column  flex-lg-row  flex-wrap justify-content-center gap-0'>
 {
     carousal1.map((item,index)=>(
-        <div key={index}  className='w-card ser-lef image-container me-3 bg-white pb-2 h-75' style={{boxShadow:'0px 2px 4px rgb(18, 150, 184)',position:'absolute' ,bottom:'100px' , position:'relative'}}>
+        <div key={index}  className='w-card ser-lef image-container me-1 bg-white pb-2 h-75' style={{boxShadow:'0px 2px 4px rgb(18, 150, 184)',position:'absolute' ,bottom:'100px' , position:'relative'}}>
          
             <img className='p-3'  style={{width:'100%', height:'400px',}} src={item.img} alt={item.title} />
             

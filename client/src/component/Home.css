@@ -181,8 +181,9 @@ max-lines: 30%;
   }
 }
 .w-card{
-  width: 75%;
+  width: 90%;
   margin-top: 4%;
+ 
 }
 
 @media (min-width:768px) {

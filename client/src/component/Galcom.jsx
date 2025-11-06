@@ -26,7 +26,7 @@ const Galcom = () => {
   return (
     <div>
          <div className='oth-ser' style={{height:"35vh"}} >
-          <h1  className='mt-5 text-black ' style={{wordSpacing:'2px',fontFamily:'Lato'}}>OUR GALLERY</h1>
+          <h1  className='mt-5 text-white' style={{wordSpacing:'2px',fontFamily:'Lato'}}>OUR GALLERY</h1>
 </div>
       <Gallery images={images}  />
     </div>

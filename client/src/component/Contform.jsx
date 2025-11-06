@@ -8,7 +8,7 @@ const ch='Contact Form'
     <>
 <div className='dyn'>
  <div className='oth-ser' style={{height:"35vh"}} >
-          <h1  className='mt-5 text-black ' style={{wordSpacing:'1px',fontFamily:'Lato'}}>Get In Touch with us </h1>
+          <h1  className='mt-5 ' style={{wordSpacing:'1px',fontFamily:'Lato'}}>Get In Touch with us </h1>
         
 </div>
 
@@ -19,19 +19,7 @@ const ch='Contact Form'
 
     </div>
 
-       <iframe
- 
-            title="Google Map"
-            src="https://maps.google.com/maps?q=33.5417561,73.1740364&z=15&output=embed"
-          
-            className='m-wid mb-3 mymap w-ser'
-          
-            height="400"
-            
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe> 
+    
           </div>
     </>
   )

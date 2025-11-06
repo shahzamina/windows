@@ -5,7 +5,7 @@ const Swin = () => {
     const images=[
        { img:'images/sw11.gif'},
 { img:'images/sw4.gif'},
-{ img:'images/uPVCwin1.webp'}
+{ img:'images/upvcwin1.webp'}
     ]
 
       const head='uPVC SLIDING WINDOWS'
